@@ -23,7 +23,7 @@
 //Função principal
 function calcularIdade(event) {
     // Previne que a tela se recarregue quando a função for executada
-    event.preventDefault(); 
+   // event.preventDefault(); 
     //console.log("Funcionante!!!"); comentado após teste OK
 
     // Executa a função pegarValores
@@ -114,8 +114,8 @@ let dataHoraAtual = Intl.DateTimeFormat('pt-BR', { timeStyle: 'long', dateStyle:
 // Cria um novo objeto passando os atributos do objeto anterior e acrescenta novos atributos
 let dadosUsuarioAtualizado = {
     ...usuario,
-    nascimento: ano,
-    idade: valorIdade.toFixed(2),
+    //nascimento: ano,
+    idade: valorIdade,
     classificacao: classificarIdade,
     dataCadastro: dataHoraAtual
 
@@ -198,7 +198,7 @@ function montarTabela(listaDeCadastrados) {
         // E adiciona um bloco de codigo igual o a baixo dentro da variavel template para cada elemento do array
         template += `<tr>
         <td data-cell="nome">${pessoa.nome}</td>
-        <td data-cell="nascimento">${pessoa.ano}</td>
+        <td data-cell="nascimento">${pessoa.dia}/${pessoa.mes}/${pessoa.ano}</td>
         <td data-cell="idade">${pessoa.idade}</td>
         <td data-cell="classificação faixa etária">${pessoa.classificacao}</td>
         <td data-cell="data de cadastro">${pessoa.dataCadastro}</td>
@@ -207,4 +207,15 @@ function montarTabela(listaDeCadastrados) {
 
     // Adiciona o conteudo que esta dentro da variavel template ao elemento tabela
     tabela.innerHTML = template;
+}
+
+
+// Passo 8 - Limpar local storage
+    function deletarRegistros() {
+    // Remove o item "usuariosCadastrados" do localStorage
+    localStorage.removeItem("usuariosCadastrados")
+
+    // Recarrega a pagina
+    window.location.reload();
+
 }
